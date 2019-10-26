@@ -1,0 +1,149 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{polyglossia}
+\setotherlanguage{english}
+\setdefaultlanguage{russian}
+
+\usepackage{adjustbox}
+\usepackage{graphicx}
+
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{libertine} 
+\usepackage{indentfirst}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+
+
+%opening
+\title{ДЗ 2}
+\author{Михаил Воронов}
+
+\begin{document}
+
+\maketitle
+
+\section{Задача 1.}
+\begin{enumerate}[label=(\alph*)]
+ \item $2x^3 - 3x^2 + 1 = O(x^3), x \to +\infty$
+  \begin{equation*}
+   \lim_{x \to +\infty} \frac{2x^3 - 3x^2 + 1}{x^3} = 
+   \lim_{x \to +\infty} 2 - \frac{3}{x} + \frac{1}{x^3} = 2
+  \end{equation*}
+  Ответ: да, верно.
+ \item $x + x^2sinx = O(x^3), x \to -\infty$
+  \begin{equation*}
+   \lim_{x \to -\infty} \frac{x + x^2sinx}{x^3} =
+   \lim_{x \to -\infty} \Big(\frac{1}{x^2} + \frac{sinx}{x}\Big)
+  \end{equation*}
+  В этом пределе первая часть стремится к нулю. Числитель функции может принимать значения от $-1$ до $1$, поэтому вторая часть тоже стремится к нулю. Значит, предел равен нулю.
+  Ответ: да, верно.
+  \item $xsinx = o(x^3), x \to 0$
+  \begin{equation*}
+   \lim_{x \to 0} \frac{xsinx}{x^3} = 
+   \lim_{x \to 0} \frac{sinx + xcosx}{3x^2} = 
+   \lim_{x \to 0} \frac{2cosx - xsinx}{6x} = +\infty
+  \end{equation*}
+  Ответ: нет, неверно.
+  \item $x^ne^{-x} = o(x^2), x \to +\infty$
+  \begin{equation*}
+   \lim_{x \to +\infty} \frac{x^ne^{-x}}{x^2} = 
+   \lim_{x \to +\infty} \frac{x^{n-2}}{e^x} = 0
+  \end{equation*}
+  Требуется пояснение к последнему шагу: там есть неопределённость, поэтому мы применим правило Лопиталя $n - 2$ раза, тогда в числителе останется константа, а в знаменателе $e^x$, которое стремится к $+\infty$.
+  Ответ: да, верно.
+\end{enumerate}
+
+\section{Задача 2.}
+\begin{enumerate}[label=(\alph*)]
+ \item $cos(x)$ до $x^7$
+  
+ $cox(x) = cos(0) + \frac{-sin0}{1!}x + \frac{-cos0}{2!}x^2
+ + \frac{sin0}{3!}x^3 + \frac{cos0}{4!}x^4 + \frac{-sin0}{5!}x^5
+ + \frac{-cos0}{6!}x^6 + $
+ 
+ $ + \frac{sin0}{7!}x^7 = 1 - \frac{x^2}{2!} + \frac{x^4}{4!}
+ - \frac{x^6}{6!} + ... $
+  
+ \item $e^{2x - x^{2}}$ до $x^3$
+ 
+ $\big(e^{2x - x^{2}}\big)' = 2(1 - x)e^{2x - x^{2}}$
+ 
+ $\big(e^{2x - x^{2}}\big)'' = e^{2x - x^{2}}(2 - 2x)
+ (2 - 2x) - 2e^{2x - x^{2}} = 2(2(1-x)^2 - 1)e^{2x - x^{2}} $
+ 
+ $\big(e^{2x - x^{2}}\big)''' = \big(2 - 8x + 4x^2\big)'
+ e^{2x - x^{2}} + (2 - 8x + 4x^2)(2x - 2)e^{2x - x^{2}} = $
+ 
+ $ = (-8x^3 + 24x^2 - 12x - 4)e^{2x - x^{2}} $
+ 
+ $ e^{2x - x^{2}} = 1 + \frac{2}{1!}x + \frac{2}{2!}x^2 + \frac{0}{3!}x^3 + ... = 
+ 1 + 2x + x^2 + ... $
+ 
+ \item $cos(e^{2x - x^{2}})$ до $x^3$
+ 
+ $ cos(e^{2x - x^{2}}) \big[$ до $x^3\big] = 1 - \frac{(x^2 + 2x + 1)^2}{2} $ 
+\end{enumerate}
+
+\section{Задача 3.}
+\begin{enumerate}[label=(\alph*)]
+ \item
+ $$\lim_{x \to 0} \frac{cosx - 1}{x^2}x = \lim_{x \to 0} \frac{-\frac{x^2}{2!}}{x^2}x
+ = \lim_{x \to 0}-0,5x = 0 $$
+ \item
+ $$ \lim_{x \to 0} \frac{e^{2x - x^{2}}-1-2x+3x^2}{x^2} = \lim_{x \to 0} \frac{1 + 2x + x^2 - 1 - 2x + 3x^2}{x^2}  = 4 $$
+ 
+ \item
+ $$ \lim_{x \to 0} cos(e^{2x - x^{2}}) = cos1 $$ Я бы рад здесь что-то пораскладывать, но неопределённости нет
+ 
+ \item
+ $$ \lim_{x \to 0} \frac{e^xsinx - x(1+x)}{x^3} = \lim_{x \to 0}
+ \frac{(1+x)(x-\frac{x^3}{3!}) - x(1+x)}{x^3}
+ = \lim_{x \to 0} \frac{-\frac{x^3}{6} (1+x)}{x^3} = $$
+ 
+ $$ = \lim_{x \to 0} -\frac{1+x}{6} = -\frac{1}{6}$$.
+\end{enumerate}
+
+\section{Задача 4.}
+
+$$y = ln(1+7x)$$
+
+$$y' = \frac{7}{1+7x}$$
+
+$$y'' = \frac{-49}{(1+7x)^2}$$
+
+$$y''' = \frac{646}{(1+7x)^3}$$
+
+$$ y = ln(1+7x) = ln(22) + \frac{7(x-3)}{22} - \frac{49(x-3)^2}{968} 
++ \frac{686(x-3)^3}{63 888} - ... $$
+
+\section{Задача 5.}
+
+\begin{enumerate}[label=(\alph*)]
+ \item
+ $$y = ln(1+x)$$
+
+ $$y' = \frac{1}{x+1}$$
+
+ $$y'' = -\frac{1}{(x+1)^2} $$
+
+ $$y''' = \frac{2}{(x+1)^3} $$
+ 
+ $$y'''' = -\frac{6}{(x+1)^4}  $$
+ 
+ $$ ln(1+x) = ln(1) + \frac{x}{1!} - \frac{x^2}{2!} + \frac{2x^3}{3!}
+ - \frac{6x^4}{4!} = x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + ...$$
+ 
+ $$ \sum^{\infty}_{n=1} \frac{x^n}{n} (-1)^{n+1} $$
+ 
+ Попробуем доказать, что это действительно так. Каждая производная от функции $ln(x+1)$ содержит выражение $x+1$ в отрицательной степени, значит, знак с каждой новой производной будет меняться. Остаётся понять, куда уходит факториал. С каждой новой производной мы умножаем значения всех степеней предыдущих производных, то есть берём факториал $n-1$. Так как $\frac{n!}{(n-1)!} = n$, в знаменателе остаётся $n$.
+ \item
+ $$ ln(1,1) = ln(1+0,1) \approx \frac{1}{10} - \frac{1}{200} + \frac{1}{3000}
+ - \frac{1}{40 000} + \frac{1}{500 000} = $$
+
+ $$ = \textbf{0.09531}0(3) $$
+\end{enumerate}
+\end{document}
